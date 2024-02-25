@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up</title>
+</head>
+<body>
+
+<h2>Sign Up</h2>
+
+<!-- Display error messages here -->
+<div id="error-message" style="color: red; margin-bottom: 10px;"></div>
+
+<form id="signup-form" action="signup.php" method="post">
+  <label for="username">Username:</label><br>
+  <input type="text" id="username" name="username" required><br><br>
+  <label for="password">Password:</label><br>
+  <input type="password" id="password" name="password" required><br><br>
+  <input type="submit" value="Sign Up">
+</form>
+
+<!-- JavaScript to display error messages if any -->
+<script>
+// Get URL parameters to check for error messages
+const urlParams = new URLSearchParams(window.location.search);
+const error = urlParams.get('error');
+
+// Display error messages if any
+if (error === 'username_exists') {
+  document.getElementById('error-message').innerText = 'Username already exists. Please choose a different one.';
+} else if (error === 'signup_failed') {
+  document.getElementById('error-message').innerText = 'Sign up failed. Please try again.';
+}
+
+// Remove error message on page reload
+window.onload = function() {
+  if (error === 'username_exists' || error === 'signup_failed') {
+    history.replaceState({}, document.title, "/schoolproject/signup.html");
+  }
+}
+</script>
+
+<p>Already have an account? <a href="login.html">Login</a></p>
+
+</body>
+</html>
