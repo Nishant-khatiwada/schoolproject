@@ -1,4 +1,12 @@
 <?php
+if (!isset($_SESSION["user_id"])) {
+    // Redirect user to the login page
+    header("Location: login.html");
+    exit(); // Stop further execution of the script
+}
+else{
+    header("Location: home.html");
+}
 // Database connection parameters
 $servername = "localhost";
 $username = "root";

@@ -1,9 +1,11 @@
 <?php
+session_start();
+
 // Database connection parameters
-$servername = "localhost"; // Or use 127.0.0.1
-$username = "root"; // Your MySQL username
-$password = ""; // Your MySQL password
-$database = "tasks"; // Your database name
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "tasks";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $database);
@@ -13,9 +15,22 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+// Ensure user is logged in
+if (!isset($_SESSION["user_id"])) {
+    // Redirect user to login page if not logged in
+    header("Location: login.html");
+    exit();
+}
+
+$user_id = $_SESSION["user_id"]; 
+
 // Retrieve tasks from the database
-$sql = "SELECT task_id, task_name FROM assignments"; // Select both task_id and task_name
+$sql = "SELECT task_id, task_name FROM assignments WHERE user_id = $user_id";
 $result = $conn->query($sql);
+
+if (!$result) {
+    die("Error fetching tasks: " . $conn->error);
+}
 
 $tasks = array();
 if ($result->num_rows > 0) {

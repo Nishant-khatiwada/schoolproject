@@ -28,8 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = $result->fetch_assoc();
         if ($row["password"] == $password) {
             // User found and password matches, set session
-            $_SESSION["username"] = $username;
-            
+            $_SESSION["user_id"] = $row["user_id"];
+            $_SESSION["username"] =  $username;
             // Redirect to dashboard
             header("Location: home.html");
             exit();

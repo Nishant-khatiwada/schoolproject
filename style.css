@@ -1,0 +1,169 @@
+/* Login Form Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('');
+    /* replace with the path to your image */
+    background-size: cover;
+    /* adjusts the image size to cover the entire container */
+    background-position: center;
+    /* centers the image */
+}
+.login-card {
+    width: 90%;
+    max-width: 400px; /* Set maximum width */
+    margin: 50px auto;
+    background: linear-gradient(135deg, #4aa3df, #99b2c9, #2ecc71);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login-card h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #fff;
+}
+
+.login-card form {
+    text-align: center;
+}
+
+.login-card input[type="text"],
+.login-card input[type="password"] {
+    width: calc(100% - 30px);
+    padding: 15px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+    color: #1b5835;
+    background-color: wheat;
+    font-size: 18px;
+}
+
+.login-card input[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #459bd4;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.login-card input[type="submit"]:hover {
+    background-color: #27bb65;
+    transition: background-color 0.4s ease;
+
+}
+
+.login-help {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.login-help a {
+    text-decoration: none;
+    color: #0721b1;
+    transition: color 0.3s ease;
+}
+
+.login-help a:hover {
+    color: #2647db;
+}
+
+
+
+
+
+
+.signup-card{
+    width: 90%;
+    max-width: 400px; /* Set maximum width */
+    margin: 50px auto;
+    background: linear-gradient(135deg, #4aa3df, #99b2c9, #2ecc71);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.signup-card h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #fff;
+}
+
+.signup-card form {
+    text-align: center;
+}
+
+.signup-card input[type="text"],
+.signup-card input[type="password"] {
+    width: calc(100% - 30px);
+    padding: 15px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+    color: #1b5835;
+    background-color: wheat;
+    font-size: 18px;
+}
+
+.signup-card input[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #459bd4;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.signup-card input[type="submit"]:hover {
+    background-color: #27bb65;
+    transition: background-color 0.4s ease;
+
+}
+
+.signuo-help {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.signup-help a {
+    text-decoration: none;
+    color: #0721b1;
+    transition: color 0.3s ease;
+}
+
+.signup-help a:hover {
+    color: #2647db;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

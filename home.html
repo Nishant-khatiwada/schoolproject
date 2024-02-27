@@ -4,20 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>Task Viewer</title>
     <style>
         body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-image: url('photo3.jpg');
-    /* replace with the path to your image */
-    background-size: cover;
-    /* adjusts the image size to cover the entire container */
-    background-position: center;
-    /* centers the image */
-}
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('');
+            /* replace with the path to your image */
+            background-size: cover;
+            /* adjusts the image size to cover the entire container */
+            background-position: center;
+            /* centers the image */
+        }
 
 
         .content {
@@ -27,7 +28,7 @@
             /* centers the content horizontally */
             padding: 20px;
             /* adds some space around the content */
-            background-color:rgb(255 255 255 / 28%);
+            background-color: rgb(255 255 255 / 28%);
             /* adds a semi-transparent white background to improve readability */
             text-align: center;
             /* centers the text */
@@ -256,12 +257,87 @@
             background-color: #d32f2f;
             transform: scale(1.05);
         }
+
+        .current-time,
+        .current-date {
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+            color: #555;
+            margin-right: 10px;
+            /* Add some space between the elements */
+        }
+
+        .navbar-brand {
+            margin-right: auto;
+            /* Push the brand/logo to the left */
+        }
+
+        .logout-btn {
+            background-color: #f44336;
+            /* Red background color */
+            color: white;
+            /* Text color */
+            border: none;
+            /* Remove border */
+            padding: 10px 20px;
+            /* Adjusted padding */
+            border-radius: 10px;
+            /* Rounded corners */
+            cursor: pointer;
+            /* Cursor style */
+            font-size: 16px;
+            /* Font size */
+            transition: background-color 0.3s ease;
+            /* Transition effect for background color */
+        }
+
+        .logout-btn:hover {
+            background-color: #d32f2f;
+            /* Darker red on hover */
+        }
+
+        /* Animation */
+        @keyframes scale {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .logout-btn.animate {
+            animation: scale 0.5s ease-in-out;
+        }
     </style>
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand">Navbar</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <div class="current-time" id="current-time"></div>
+                </li>
+                <li class="nav-item">
+                    <div class="current-date" id="current-date"></div>
+                </li>
+                <li class="nav-item">
+                    <button class="logout-btn" onclick="logout()">Logout</button>
+
+                </li>
+            </ul>
+        </div>
+    </nav>
 
     <h2>Task Viewer</h2>
+
     <div class="content">
         <div>
             <div id="taskContainers"></div>
@@ -467,10 +543,71 @@
         function change() {
             window.location.href = "index.html";
         }
+
+
+
+
+        //too display time
+        function updateTimeAndDate() {
+            var currentTime = new Date();
+            var hours = currentTime.getHours();
+            var minutes = currentTime.getMinutes();
+            var seconds = currentTime.getSeconds();
+            var year = currentTime.getFullYear();
+            var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            var month = monthNames[currentTime.getMonth()];
+            var day = currentTime.getDate();
+
+            // Add leading zeros if needed
+            hours = (hours < 10 ? "0" : "") + hours;
+            minutes = (minutes < 10 ? "0" : "") + minutes;
+            //seconds = (seconds < 10 ? "0" : "") + seconds;
+            day = (day < 10 ? "0" : "") + day;
+
+            // Display the time in the format HH:MM:SS
+            var currentTimeString = hours + ":" + minutes;// + ":" + seconds
+
+            // Display the date in the format Month Day, Year
+            var currentDateString = month + " " + day + ", " + year;
+
+            // Update the time and date in the HTML
+            document.getElementById("current-time").textContent = currentTimeString;
+            document.getElementById("current-date").textContent = currentDateString;
+        }
+
+        // Update the time and date every second
+        setInterval(updateTimeAndDate, 1000);
+
+        // Update the time and date immediately upon page load
+        updateTimeAndDate();
+
+
+
+        document.querySelector('.logout-btn').addEventListener('click', function () {
+            // Add 'animate' class to trigger animation
+            this.classList.add('animate');
+
+            // Remove 'animate' class after animation completes
+            setTimeout(() => {
+                this.classList.remove('animate');
+            }, 500);
+        });
+//Logout user
+function logout()
+{
+    window.location.href="logout.php";
+}
+
     </script>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
 
 </body>
 

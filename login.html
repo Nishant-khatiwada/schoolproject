@@ -1,47 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<h2>Login</h2>
 
-<!-- Display error messages here -->
-<div id="error-message" style="color: red; margin-bottom: 10px;"></div>
+  <!-- Display error messages here -->
+  <div class="login-card">
+    <div id="error-message" style="color: red; margin-bottom: 10px;"></div>
+    <h1>Log-in</h1><br>
 
-<form id="login-form" action="login.php" method="post">
-  <label for="username">Enter yout username:</label><br>
-  <input type="text" id="username" name="username" required><br><br>
-  <label for="password">Password:</label><br>
-  <input type="password" id="password" name="password" required><br><br>
-  <input type="submit" value="Login">
-</form>
+    <form id="login-form" action="login.php" method="post">
+      <label for="username">Enter your username:</label><br>
+      <input type="text" id="username" name="username" required><br><br>
+      <div class="password-container">
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+      </div>
+      <input type="submit" class="login login-submit" value="Login">
+    </form>
+    <div class="login-help">
+      <a href="signup.html">Register</a>
+    </div>
+  </div>
+    <!-- JavaScript to display error messages if any -->
+    <script>
+      // Get URL parameters to check for error messages
+      const urlParams = new URLSearchParams(window.location.search);
+      const error = urlParams.get('error');
 
-<!-- JavaScript to display error messages if any -->
-<script>
-// Get URL parameters to check for error messages
-const urlParams = new URLSearchParams(window.location.search);
-const error = urlParams.get('error');
+      // Display error messages if any
+      if (error === 'incorrect_password') {
+        document.getElementById('error-message').innerText = 'Incorrect password. Please try again.';
+      } else if (error === 'user_not_found') {
+        document.getElementById('error-message').innerText = 'User not found. Create an account.';
+      }
 
-// Display error messages if any
-if (error === 'incorrect_password') {
-  document.getElementById('error-message').innerText = 'Incorrect password. Please try again.';
-} else if (error === 'user_not_found') {
-  document.getElementById('error-message').innerText = 'User not found. Create an account.';
-}
+      // Remove error message on page reload
+      window.onload = function () {
+        if (error === 'incorrect_password') {
+          history.replaceState({}, document.title, "/schoolproject/login.html");
+        }
+      }
+    </script>
 
-// Remove error message on page reload
-window.onload = function() {
-  if (error === 'incorrect_password') {
-    history.replaceState({}, document.title, "/schoolproject/login.html");
-  }
-}
-</script>
-
-<p>Don't have an account? <a href="signup.html">Sign up</a></p>
+   
 
 </body>
+
 </html>
